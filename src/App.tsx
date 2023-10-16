@@ -1,6 +1,9 @@
+// src/App.tsx
+
 import React, { useState } from "react"
 import TodoForm from "./TodoForm"
 import TodoList from "./TodoList"
+import LocalStorageTodoManager from "./LocalStorageTodoManager"
 
 interface Todo {
   id: number
@@ -37,6 +40,7 @@ function App() {
       <h1>Todo List</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <LocalStorageTodoManager initialTodos={todos} onTodosChange={setTodos} />
     </div>
   )
 }

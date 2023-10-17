@@ -1,4 +1,3 @@
-// src/components/TodoItem.tsx
 import React from "react"
 
 interface Todo {
@@ -7,16 +6,18 @@ interface Todo {
   completed: boolean
 }
 
-interface TodoItemProps {
+export type TodoItemPropsWithComplete = {
   todo: Todo
   toggleTodo: (id: number) => void
   deleteTodo: (id: number) => void
+  completeTask: (id: number) => void
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({
+const TodoItem: React.FC<TodoItemPropsWithComplete> = ({
   todo,
   toggleTodo,
-  deleteTodo
+  deleteTodo,
+  completeTask
 }) => {
   return (
     <li>
@@ -26,6 +27,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
         onChange={() => toggleTodo(todo.id)}
       />
       <span className={todo.completed ? "completed" : ""}>{todo.text}</span>
+      {!todo.completed && (
+        <button onClick={() => completeTask(todo.id)}>Complete</button>
+      )}
       <button onClick={() => deleteTodo(todo.id)}>Delete</button>
     </li>
   )

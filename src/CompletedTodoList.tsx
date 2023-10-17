@@ -7,22 +7,22 @@ interface Todo {
   completed: boolean
 }
 
-interface TodoListProps {
-  todos: Todo[]
+interface CompletedTodoListProps {
+  completedTodos: Todo[]
   toggleTodo: (id: number) => void
   deleteTodo: (id: number) => void
   completeTask: (id: number) => void
 }
 
-const TodoList: React.FC<TodoListProps> = ({
-  todos,
+const CompletedTodoList: React.FC<CompletedTodoListProps> = ({
+  completedTodos,
   toggleTodo,
   deleteTodo,
   completeTask
 }) => {
   return (
     <ul>
-      {todos.map((todo) => (
+      {completedTodos.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}
@@ -35,4 +35,4 @@ const TodoList: React.FC<TodoListProps> = ({
   )
 }
 
-export default TodoList
+export default CompletedTodoList

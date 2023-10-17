@@ -1,4 +1,3 @@
-// src/components/TodoForm.tsx
 import React, { useState } from "react"
 
 interface TodoFormProps {
@@ -11,7 +10,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const handleAddTodo = () => {
     if (inputText.trim() === "") return
     addTodo(inputText)
-    setInputText("")
+    setInputText("") // Clear the input field after adding the todo
   }
 
   return (

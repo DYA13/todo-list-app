@@ -11,3 +11,13 @@ input {
 .completed {
   text-decoration: line-through;
 }
+.completed-task {
+  text-decoration: line-through;
+  color: #ca1616;
+}
+.completed-task button {
+  background-color: transparent;
+  color: green; /* Color for the Complete button */
+  border: none;
+  cursor: pointer;
+}

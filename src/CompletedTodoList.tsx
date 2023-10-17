@@ -20,9 +20,14 @@ const CompletedTodoList: React.FC<CompletedTodoListProps> = ({
   deleteTodo,
   completeTask
 }) => {
+  // Filter out any completed tasks that have not already been added to the completed list
+  const filteredCompletedTodos = completedTodos.filter(
+    (todo) => !completedTodos.some((ct) => ct.id === todo.id)
+  )
+
   return (
     <ul>
-      {completedTodos.map((todo) => (
+      {filteredCompletedTodos.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}

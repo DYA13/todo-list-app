@@ -63,6 +63,10 @@ function App() {
       localStorage.setItem("user", username)
     }
   }
+  const handleLogout = () => {
+    setUser(null)
+    localStorage.removeItem("user")
+  }
 
   const addTodo = (text: string) => {
     const newTodo: Todo = {
@@ -110,6 +114,8 @@ function App() {
         <>
           <h1>Todo List</h1>
           <TodoForm addTodo={addTodo} />
+          <button onClick={handleLogout}>Logout</button>{" "}
+          {/* Move the logout button here */}
           <TodoList
             todos={todos}
             toggleTodo={toggleTodo}
@@ -129,7 +135,12 @@ function App() {
         </>
       ) : (
         // Render the login/registration form if no user is authenticated
-        <LoginForm onLogin={handleLogin} onRegister={handleRegister} />
+        <LoginForm
+          onLogin={handleLogin}
+          onRegister={handleRegister}
+          onLogout={handleLogout}
+          user={user}
+        />
       )}
     </div>
   )

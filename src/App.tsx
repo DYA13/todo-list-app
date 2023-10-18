@@ -81,12 +81,19 @@ function App() {
   }
 
   const addTodo = (text: string) => {
+    // Check if the item already exists in the todo list
+    if (todos.some((todo) => todo.text === text)) {
+      alert("This item already exists in the todo list.")
+      return
+    }
+
     const newTodo: Todo = {
       id: Date.now(),
       text,
       completed: false
     }
     setTodos([...todos, newTodo])
+
     // Store the user's updated todo list in local storage
     if (user) {
       localStorage.setItem(`todos_${user}`, JSON.stringify([...todos, newTodo]))

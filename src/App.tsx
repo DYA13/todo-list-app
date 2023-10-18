@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import TodoForm from "./TodoForm"
-import TodoList from "./TodoList"
-import CompletedTodoList from "./CompletedTodoList"
-import LocalStorageTodoManager from "./LocalStorageTodoManager"
-import "./App.css"
-import LoginForm from "./LoginForm"
+import TodoForm from "./Components/TodoForm"
+import TodoList from "./Components/TodoList"
+import CompletedTodoList from "./Components/CompletedTodoList"
+import LocalStorageTodoManager from "./Components/LocalStorageTodoManager"
+import "./styles/App.css"
+import LoginForm from "./Components/LoginForm"
 
 interface Todo {
   id: number

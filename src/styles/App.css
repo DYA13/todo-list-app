@@ -21,3 +21,8 @@ input {
   border: none;
   cursor: pointer;
 }
+.welcome {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ca1616;
+}

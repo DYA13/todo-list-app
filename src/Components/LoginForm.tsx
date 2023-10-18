@@ -1,5 +1,6 @@
 // LoginForm.tsx
 import React, { useState } from "react"
+import "../styles/App.css"
 
 interface LoginFormProps {
   onLogin: (username: string, password: string) => void
@@ -17,7 +18,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [isRegistering, setIsRegistering] = useState(false)
-
+  console.log("User prop in LoginForm:", user)
   const handleLogin = () => {
     onLogin(username, password)
   }
@@ -30,7 +31,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
     <div>
       {user ? ( // If a user is authenticated, render the logout button
         <>
-          <h2>Welcome, {user}!</h2>
+          <h2 className='welcome'>Welcome, {user}!</h2>
           <button onClick={onLogout}>Logout</button>
         </>
       ) : (

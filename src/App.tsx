@@ -40,6 +40,7 @@ function App() {
     )
 
     if (foundUser && foundUser.password === password) {
+      console.log("Authentication successful")
       // Authentication successful
       setUser(username)
       localStorage.setItem("user", username)
@@ -47,8 +48,10 @@ function App() {
       const userTodos = JSON.parse(
         localStorage.getItem(`todos_${username}`) || "[]"
       )
+      console.log("User Todos:", userTodos)
       setTodos(userTodos)
     } else {
+      console.log("Invalid username or password")
       alert("Invalid username or password.")
     }
   }

@@ -1,3 +1,5 @@
+// LocalStorageTodoManager.tsx
+
 import React, { useEffect } from "react"
 
 interface Todo {
@@ -21,10 +23,11 @@ const LocalStorageTodoManager: React.FC<LocalStorageTodoManagerProps> = ({
   }, [onTodosChange])
 
   useEffect(() => {
+    // Update local storage with the current todos (initialTodos)
     localStorage.setItem("todos", JSON.stringify(initialTodos))
   }, [initialTodos])
 
-  return null
+  return null // This component doesn't render anything, it just manages local storage
 }
 
 export default LocalStorageTodoManager

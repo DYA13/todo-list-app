@@ -22,6 +22,11 @@ function App() {
     const storedUser = localStorage.getItem("user")
     if (storedUser) {
       setUser(storedUser)
+      // Load user-specific todos from local storage
+      const userTodos = JSON.parse(
+        localStorage.getItem(`todos_${storedUser}`) || "[]"
+      )
+      setTodos(userTodos)
     }
   }, [])
 
@@ -38,6 +43,11 @@ function App() {
       // Authentication successful
       setUser(username)
       localStorage.setItem("user", username)
+      // Load user-specific todos from local storage
+      const userTodos = JSON.parse(
+        localStorage.getItem(`todos_${username}`) || "[]"
+      )
+      setTodos(userTodos)
     } else {
       alert("Invalid username or password.")
     }
@@ -61,6 +71,8 @@ function App() {
 
       setUser(username)
       localStorage.setItem("user", username)
+      // Initialize the user's todos with an empty array
+      setTodos([])
     }
   }
   const handleLogout = () => {
@@ -75,6 +87,10 @@ function App() {
       completed: false
     }
     setTodos([...todos, newTodo])
+    // Store the user's updated todo list in local storage
+    if (user) {
+      localStorage.setItem(`todos_${user}`, JSON.stringify([...todos, newTodo]))
+    }
   }
 
   const toggleTodo = (id: number) => {
@@ -82,11 +98,19 @@ function App() {
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     )
     setTodos(updatedTodos)
+    // Store the user's updated todo list in local storage
+    if (user) {
+      localStorage.setItem(`todos_${user}`, JSON.stringify(updatedTodos))
+    }
   }
 
   const deleteTodo = (id: number) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id)
     setTodos(updatedTodos)
+    // Store the user's updated todo list in local storage
+    if (user) {
+      localStorage.setItem(`todos_${user}`, JSON.stringify(updatedTodos))
+    }
 
     // If the deleted task was in the completed list, remove it from there as well
     const updatedCompletedTodos = completedTodos.filter(
@@ -100,6 +124,10 @@ function App() {
       todo.id === id ? { ...todo, completed: true } : todo
     )
     setTodos(updatedTodos)
+    // Store the user's updated todo list in local storage
+    if (user) {
+      localStorage.setItem(`todos_${user}`, JSON.stringify(updatedTodos))
+    }
 
     const taskToMove = todos.find((todo) => todo.id === id)
     if (taskToMove) {

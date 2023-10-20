@@ -19,7 +19,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
         type='text'
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
-        placeholder='Add a new todo'
+        placeholder='Добавить задачу'
       />
       <button onClick={handleAddTodo}>Добавить</button>
     </div>

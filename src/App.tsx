@@ -143,9 +143,9 @@ function App() {
     <div className='app'>
       {user ? (
         <>
-          <h1>Todo List</h1>
+          <h1>Список дел</h1>
           <TodoForm addTodo={addTodo} />
-          <button onClick={handleLogout}>Logout</button>{" "}
+          <button onClick={handleLogout}>Выйти</button>{" "}
           <TodoList
             todos={todos}
             toggleTodo={toggleTodo}

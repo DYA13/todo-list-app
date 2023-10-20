@@ -31,8 +31,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
     <div>
       {user ? (
         <>
-          <h2 className='welcome'>Welcome, {user}!</h2>
-          <button onClick={onLogout}>Logout</button>
+          <h2 className='welcome'>Добро пожаловать, {user}!</h2>
+          <button onClick={onLogout}>Выйти</button>
         </>
       ) : (
         // If no user is authenticated, render the login/registration form
@@ -40,13 +40,13 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <h2>{isRegistering ? "Register" : "Login"}</h2>
           <input
             type='text'
-            placeholder='Username'
+            placeholder='Email'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type='password'
-            placeholder='Password'
+            placeholder='Пароль'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -54,7 +54,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
             {isRegistering ? "Register" : "Login"}
           </button>
           <button onClick={() => setIsRegistering(!isRegistering)}>
-            {isRegistering ? "Switch to Login" : "Switch to Register"}
+            {isRegistering ? "Войти" : "Зарегистрироваться"}
           </button>
         </>
       )}

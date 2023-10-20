@@ -10,7 +10,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const handleAddTodo = () => {
     if (inputText.trim() === "") return
     addTodo(inputText)
-    setInputText("") // Clear the input field after adding the todo
+    setInputText("")
   }
 
   return (
@@ -21,7 +21,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
         onChange={(e) => setInputText(e.target.value)}
         placeholder='Add a new todo'
       />
-      <button onClick={handleAddTodo}>Add</button>
+      <button onClick={handleAddTodo}>Добавить</button>
     </div>
   )
 }

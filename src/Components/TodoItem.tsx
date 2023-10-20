@@ -28,9 +28,9 @@ const TodoItem: React.FC<TodoItemPropsWithComplete> = ({
       />
       <span className={todo.completed ? "completed" : ""}>{todo.text}</span>
       {!todo.completed && (
-        <button onClick={() => completeTask(todo.id)}>Complete</button>
+        <button onClick={() => completeTask(todo.id)}>Выполнить</button>
       )}
-      <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+      <button onClick={() => deleteTodo(todo.id)}>Удалить</button>
     </li>
   )
 }

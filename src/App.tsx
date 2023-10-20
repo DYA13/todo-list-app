@@ -17,7 +17,6 @@ function App() {
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([])
   const [user, setUser] = useState<string | null>(null)
 
-  // Load user data from local storage on app load
   useEffect(() => {
     const storedUser = localStorage.getItem("user")
     if (storedUser) {
@@ -31,20 +30,19 @@ function App() {
   }, [])
 
   const handleLogin = (username: string, password: string) => {
-    // Retrieve stored users from local storage
     const storedUsers = JSON.parse(localStorage.getItem("users") || "[]")
 
-    // Find the user with the matching username
     const foundUser = storedUsers.find(
       (userItem: { username: string }) => userItem.username === username
     )
 
     if (foundUser && foundUser.password === password) {
       console.log("Authentication successful")
-      // Authentication successful
+
       setUser(username)
       localStorage.setItem("user", username)
-      // Load user-specific todos from local storage
+      console.log("User prop in LoginForm:", user)
+
       const userTodos = JSON.parse(
         localStorage.getItem(`todos_${username}`) || "[]"
       )
@@ -57,7 +55,6 @@ function App() {
   }
 
   const handleRegister = (username: string, password: string) => {
-    // Check if the user already exists in local storage
     const storedUsers = JSON.parse(localStorage.getItem("users") || "[]")
 
     if (
@@ -67,14 +64,14 @@ function App() {
     ) {
       alert("Username already exists. Please choose another.")
     } else {
-      // Add the new user to the local storage
       const newUser = { username, password }
       storedUsers.push(newUser)
       localStorage.setItem("users", JSON.stringify(storedUsers))
 
       setUser(username)
       localStorage.setItem("user", username)
-      // Initialize the user's todos with an empty array
+      console.log("User is now:", user)
+
       setTodos([])
     }
   }
@@ -84,7 +81,6 @@ function App() {
   }
 
   const addTodo = (text: string) => {
-    // Check if the item already exists in the todo list
     if (todos.some((todo) => todo.text === text)) {
       alert("This item already exists in the todo list.")
       return
@@ -97,7 +93,6 @@ function App() {
     }
     setTodos([...todos, newTodo])
 
-    // Store the user's updated todo list in local storage
     if (user) {
       localStorage.setItem(`todos_${user}`, JSON.stringify([...todos, newTodo]))
     }
@@ -108,7 +103,7 @@ function App() {
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     )
     setTodos(updatedTodos)
-    // Store the user's updated todo list in local storage
+
     if (user) {
       localStorage.setItem(`todos_${user}`, JSON.stringify(updatedTodos))
     }
@@ -117,12 +112,11 @@ function App() {
   const deleteTodo = (id: number) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id)
     setTodos(updatedTodos)
-    // Store the user's updated todo list in local storage
+
     if (user) {
       localStorage.setItem(`todos_${user}`, JSON.stringify(updatedTodos))
     }
 
-    // If the deleted task was in the completed list, remove it from there as well
     const updatedCompletedTodos = completedTodos.filter(
       (todo) => todo.id !== id
     )
@@ -134,7 +128,7 @@ function App() {
       todo.id === id ? { ...todo, completed: true } : todo
     )
     setTodos(updatedTodos)
-    // Store the user's updated todo list in local storage
+
     if (user) {
       localStorage.setItem(`todos_${user}`, JSON.stringify(updatedTodos))
     }
@@ -148,12 +142,10 @@ function App() {
   return (
     <div className='app'>
       {user ? (
-        // Render the todo list if a user is authenticated
         <>
           <h1>Todo List</h1>
           <TodoForm addTodo={addTodo} />
           <button onClick={handleLogout}>Logout</button>{" "}
-          {/* Move the logout button here */}
           <TodoList
             todos={todos}
             toggleTodo={toggleTodo}
@@ -172,7 +164,6 @@ function App() {
           />
         </>
       ) : (
-        // Render the login/registration form if no user is authenticated
         <LoginForm
           onLogin={handleLogin}
           onRegister={handleRegister}

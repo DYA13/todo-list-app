@@ -29,7 +29,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
   return (
     <div>
-      {user ? ( // If a user is authenticated, render the logout button
+      {user ? (
         <>
           <h2 className='welcome'>Welcome, {user}!</h2>
           <button onClick={onLogout}>Logout</button>

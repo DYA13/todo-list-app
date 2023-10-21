@@ -23,17 +23,15 @@ const TodoList: React.FC<TodoListProps> = ({
   return (
     <ul>
       {todos.map((todo) => (
-        <div>
-          <li key={todo.id}>
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              toggleTodo={toggleTodo}
-              deleteTodo={deleteTodo}
-              completeTask={completeTask}
-            />
-          </li>
-        </div>
+        <li key={todo.id}>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+            completeTask={completeTask}
+          />
+        </li>
       ))}
     </ul>
   )

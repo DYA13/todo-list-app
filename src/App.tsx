@@ -70,7 +70,6 @@ function App() {
 
       setUser(username)
       localStorage.setItem("user", username)
-      console.log("User is now:", user)
 
       setTodos([])
     }
@@ -142,10 +141,12 @@ function App() {
   return (
     <div className='app'>
       {user ? (
-        <>
+        <div className='header'>
+          <button className='logout-button' onClick={handleLogout}>
+            Выйти
+          </button>{" "}
           <h1>Список дел</h1>
           <TodoForm addTodo={addTodo} />
-          <button onClick={handleLogout}>Выйти</button>{" "}
           <TodoList
             todos={todos}
             toggleTodo={toggleTodo}
@@ -162,7 +163,7 @@ function App() {
             initialTodos={todos}
             onTodosChange={setTodos}
           />
-        </>
+        </div>
       ) : (
         <LoginForm
           onLogin={handleLogin}

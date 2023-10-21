@@ -20,17 +20,23 @@ const TodoItem: React.FC<TodoItemPropsWithComplete> = ({
   completeTask
 }) => {
   return (
-    <li>
+    <li className='li'>
       <input
+        className='checkbox'
         type='checkbox'
         checked={todo.completed}
         onChange={() => toggleTodo(todo.id)}
       />
       <span className={todo.completed ? "completed" : ""}>{todo.text}</span>
+
       {!todo.completed && (
-        <button onClick={() => completeTask(todo.id)}>Выполнить</button>
+        <button className='btn-todo' onClick={() => completeTask(todo.id)}>
+          Выполнить
+        </button>
       )}
-      <button onClick={() => deleteTodo(todo.id)}>Удалить</button>
+      <button className='btn-todo' onClick={() => deleteTodo(todo.id)}>
+        Удалить
+      </button>
     </li>
   )
 }

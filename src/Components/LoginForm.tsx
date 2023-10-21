@@ -1,4 +1,3 @@
-// LoginForm.tsx
 import React, { useState } from "react"
 import "../styles/App.css"
 
@@ -18,7 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [isRegistering, setIsRegistering] = useState(false)
-  console.log("User prop in LoginForm:", user)
+
   const handleLogin = () => {
     onLogin(username, password)
   }
@@ -28,35 +27,47 @@ const LoginForm: React.FC<LoginFormProps> = ({
   }
 
   return (
-    <div>
+    <div className='container-login'>
       {user ? (
         <>
           <h2 className='welcome'>Добро пожаловать, {user}!</h2>
-          <button onClick={onLogout}>Выйти</button>
+          <button className='btn' onClick={onLogout}>
+            Выйти
+          </button>
         </>
       ) : (
         <>
-          <h2>
+          <h2 className='title'>
             {isRegistering
               ? "Пожалуйста зарегистрируйтесь для входа в Список задач! "
               : "Пожалуйста, введите свой логин и пароль для входа в Список задач!"}
           </h2>
-          <input
-            type='text'
-            placeholder='Email'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type='password'
-            placeholder='Пароль'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={isRegistering ? handleRegister : handleLogin}>
+          <div className='input-box'>
+            <input
+              className='login-input'
+              type='text'
+              placeholder='Email'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              className='login-input'
+              type='password'
+              placeholder='Пароль'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button
+            className='btn'
+            onClick={isRegistering ? handleRegister : handleLogin}
+          >
             {isRegistering ? "Зарегистрироваться" : "Войти"}
           </button>
-          <button onClick={() => setIsRegistering(!isRegistering)}>
+          <button
+            className='btn'
+            onClick={() => setIsRegistering(!isRegistering)}
+          >
             {isRegistering ? "Войти" : "Зарегистрироваться"}
           </button>
         </>

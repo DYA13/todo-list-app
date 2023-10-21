@@ -14,14 +14,17 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   }
 
   return (
-    <div>
+    <div className='container-add-todo'>
       <input
+        className='add-todo-input'
         type='text'
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         placeholder='Добавить задачу'
       />
-      <button onClick={handleAddTodo}>Добавить</button>
+      <button className='add-todo-button ' onClick={handleAddTodo}>
+        Добавить
+      </button>
     </div>
   )
 }

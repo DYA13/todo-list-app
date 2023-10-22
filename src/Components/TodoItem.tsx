@@ -31,18 +31,18 @@ const TodoItem: React.FC<TodoItemPropsWithComplete> = ({
         />
 
         <span className={todo.completed ? "completed" : ""}>{todo.text}</span>
-
-        <div className='button-container'>
-          {!todo.completed && (
-            <button className='btn-todo' onClick={() => completeTask(todo.id)}>
-              Выполнить
-            </button>
-          )}
-          <button className='btn-todo' onClick={() => deleteTodo(todo.id)}>
-            Удалить
-          </button>
-        </div>
       </li>
+
+      <div className='button-container'>
+        {!todo.completed && (
+          <button className='btn-todo' onClick={() => completeTask(todo.id)}>
+            Выполнить
+          </button>
+        )}
+        <button className='btn-todo' onClick={() => deleteTodo(todo.id)}>
+          Удалить
+        </button>
+      </div>
     </ul>
   )
 }
